@@ -1,5 +1,10 @@
 package com.test.HD_Sanity;
 
+import org.testng.annotations.AfterMethod;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -17,7 +22,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
+import org.testng.annotations.Parameters;
+
+import java.net.URL;
+
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
@@ -35,13 +45,13 @@ public class Testing {
 		
 		       
 		}
-		//@Parameters("URL")
+		@Parameters("URL")
 		@Test(priority=1)
-		//public void login(@Optional("defaultURL") String URL) throws InterruptedException
-		public void login()throws InterruptedException
+		public void login(@Optional("defaultURL") String URL) throws InterruptedException
+		//public void login()throws InterruptedException
 		{
-			//driver.get(URL);
-			driver.get("https://apollo2.humanbrain.in/viewer/annotation/portal");
+			driver.get(URL);
+			//driver.get("https://apollo2.humanbrain.in/viewer/annotation/portal");
 			driver.manage().window().maximize();
 	        String currentURL = driver.getCurrentUrl();
 	        System.out.println("Current URL: " + currentURL);
@@ -330,8 +340,8 @@ public class Testing {
 	            System.out.println("Level is : \n" + log.getLevel());
 	            System.out.println("Message is : \n" + log.getMessage());
 	        }
-	        }
-	    @AfterClass
+	    }
+		@AfterClass
 	    public void tearDown() {
 	        driver.quit();
 	    }
