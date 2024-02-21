@@ -162,6 +162,25 @@ public class Testing {
 	 		}
 	    	 checkConsoleLog();
 	    	 
+	    	 String parentWindow = driver.getWindowHandle();
+	    	 try {
+		 		    WebElement viewericon = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//nb-icon[@nbtooltip='Viewer']")));
+		 		   viewericon.click();
+		 		    System.out.println("viewer icon is clicked successfully.");
+		 		    Thread.sleep(2000);
+		 		} catch (Exception e) {
+		 		    System.out.println(" viewer icon is not clicked: " + e.getMessage());
+		 		}
+	    	 
+	    	 wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+			  Set<String> allWindows = driver.getWindowHandles();
+		        for (String window : allWindows) {
+		            if (!window.equals(parentWindow)) {
+		                driver.switchTo().window(window);
+		                break;
+		            }
+		        }
+	    	 
 	    	 try {
 	  		    WebElement section = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//span[text()='883'])[1]")));
 	  		    section.click();
@@ -224,7 +243,10 @@ public class Testing {
 //		     actions.keyDown(Keys.CONTROL).sendKeys(Keys.chord(Keys.CONTROL, Keys.SUBTRACT)).keyUp(Keys.CONTROL).build().perform(); //zoomout
 		     
 		     driver.findElement(By.xpath("//a[@title='Hide Grid']")).click();
-		        Thread.sleep(1000);
+		     checkConsoleLog();
+		     System.out.println("**********************************Grid and zoom validation done***********************************");
+		     Thread.sleep(1000);
+		        
 	    }
 		@Test(priority=4)
 	    public void measure() throws InterruptedException {
@@ -249,7 +271,10 @@ public class Testing {
 		        Thread.sleep(5000);
 		        driver.findElement(By.xpath("//a[@title='Stop Measure']")).click();
 		        driver.findElement(By.xpath("//a[@title='Delete Measure']")).click();
+		        checkConsoleLog();
 		        Thread.sleep(1000);
+		        System.out.println("**********************************Measure validation done******************************************");
+		        
 	    }
 		@Test(priority=5)
 	    public void download() throws InterruptedException {
@@ -268,6 +293,7 @@ public class Testing {
 		        driver.findElement(By.xpath("//button[text()=' Download ']")).click();
 		        Thread.sleep(2000);
 		        driver.findElement(By.xpath("//div[text()='Download Full Image']//following::button[3]")).click();
+		        checkConsoleLog();
 		        Thread.sleep(5000);
 	    }
 		@Test(priority=6)
@@ -305,7 +331,9 @@ public class Testing {
 	    	    actions4.moveByOffset(50, 0).release().build().perform();
 	    	    Thread.sleep(4000);
 	    	    driver.findElement(By.xpath("(//button[text()=' Default '])[1]")).click();
+	    	    checkConsoleLog();
 	    	    Thread.sleep(3000);
+	    	    System.out.println("******************************RGB validation done*******************************");
 	    }
 		@Test(priority=7)
 	    public void opacitywindow() throws InterruptedException {
@@ -327,6 +355,8 @@ public class Testing {
 	    	 driver.findElement(By.xpath("//a[@title='Hide Grid']")).click();
 	    	 Thread.sleep(2000);
 	    	 driver.findElement(By.xpath("//a[@title='back']")).click();
+	    	 checkConsoleLog();
+	    	 System.out.println("*******************************Opacity window validation done*********************************");
 	    }
 		
 	    private void checkConsoleLog() {
