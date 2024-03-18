@@ -279,18 +279,18 @@ public class Testing {
 		@Test(priority=5)
 	    public void download() throws InterruptedException {
 	    	 driver.findElement(By.xpath("//a[@title='Dimension Download']")).click();
-		        driver.findElement(By.xpath("//button[text()=' Download ']")).click();
+		        driver.findElement(By.xpath("//button[text()='Download']")).click();
 		        Thread.sleep(5000);
 		        WebElement dropdown=driver.findElement(By.id("mySelect"));
 		        Select select = new Select(dropdown);
 		        select.selectByValue("1024");
-		        driver.findElement(By.xpath("//button[text()=' Download ']")).click();
+		        driver.findElement(By.xpath("//button[text()='Download']")).click();
 		        Thread.sleep(5000);
 		        select.selectByValue("2048");
-		        driver.findElement(By.xpath("//button[text()=' Download ']")).click();
+		        driver.findElement(By.xpath("//button[text()='Download']")).click();
 		        Thread.sleep(5000);
 		        select.selectByValue("4096");
-		        driver.findElement(By.xpath("//button[text()=' Download ']")).click();
+		        driver.findElement(By.xpath("//button[text()='Download']")).click();
 		        Thread.sleep(2000);
 		        driver.findElement(By.xpath("//div[text()='Download Full Image']//following::button[3]")).click();
 		        checkConsoleLog();
